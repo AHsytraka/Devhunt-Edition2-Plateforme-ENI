@@ -11,6 +11,8 @@ public class Lesson
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int LessonID { get; set; }
     public string? Description { get; set; }
+
+    [MaxLength(2)]
     public string? Niveau { get; set; }
     public byte[]? Fichier { get; set; }
     public string? Nmat { get; set; }

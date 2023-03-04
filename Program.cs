@@ -18,8 +18,10 @@ builder.Services.AddCors();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<JwtServices>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPubRepository, PubRepository>();
+builder.Services.AddScoped<IComsRepository, ComsRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ILessonRepository, LessonRepository>();
 
 var app = builder.Build();
 
