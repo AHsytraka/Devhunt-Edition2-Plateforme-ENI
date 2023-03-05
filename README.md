@@ -1,12 +1,14 @@
-#  TEAM NAME README
+#  STELLAR
 
-Team Description (optional)
+___________________
 
-## PROJECT NAME
+## Get.All
 
-Project description
+Get.All est une solution mis à la disposition des étudiants l'ENI pour faciliter l'entraide entre les étudiants, le partage de connaissance et de ressource
 
-## FRAMEWORK
+___________________
+
+## Frameworks et librairies
  
  <div align="center">
  
@@ -24,125 +26,41 @@ Project description
   
 </div>
 
+___________________
+
 ## INSTALLTION
 
-### 1- Download the .ZiP file of the repository or clone the repository using {command} in git bash
+### 1- Télécharger ou Cloner le repository
+```
+git clone https://github.com/AHsytraka/Devhunt-Edition2-Plateforme-ENI.git
+```
 
-### 2-1 Download and install the .NET 6 development platefrom from  
-https://download.visualstudio.microsoft.com/download/pr/4a725ea4-cd2c-4383-9b63-263156d5f042/d973777b32563272b85617105a06d272/dotnet-sdk-6.0.406-win-x64.exe
+### 2- Télécharger le SDK Dotnet et NodeJs
 
-### 2-2 .Download and install the .NET 7 development platefrom from 
+```
 https://download.visualstudio.microsoft.com/download/pr/dcf6b6e2-824d-4cae-9f05-1b81b4ccbace/dd620dd4b95bb3534d0ebf53babc968b/dotnet-sdk-7.0.200-win-x64.exe
+```
+```
+https://nodejs.org/dist/v18.14.2/node-v18.14.2-x64.msi
+```
 
-### 3- Run the following command using cmd/powershell/console 
-#### a. Restore and install the project's packages and dependencies
+### 3- Lancer les commandes suivantes dans un terminal de votre choix
 
 ```
-dotnet new nugetconfig
+dotnet tool install --global dotnet-ef
 ```
-``
-dotnet restore
-``
 
-#### b. Run the project 
+```
+dotnet ef migrations add Init
+```
 
-`dotnet run`
+```
+dotnet ef database update
+```
 
-## SUPPORT (mail, phone, facebook,...)
-
-## AUTHOR AND ACKNOWLEDGEMENT
-
-## LICENSE
-
-
-
-## STYLING TYPE SECTION
-
-# TITLE
-## TITLE
-### TITLE
-#### TITLE
-##### TITLE
-###### TILTE
-
-
-TITLE
-============
-
-TITLE
-------------
-
-Simple paragraph line
-
-Simple **BOLD** word in a sentence <br/>
-Simple *ITALIC* word in a sentence <br/>
-Simple ***BOLD AND ITALIC*** word in a sentence <br/>
-Simple <sup>SUP</sup> word <br/>
-Simple <sub>SUB</sub> word <br/>
-
-> Quote Paragraph <br>
-
->> Paragraph <br>
-
-> - Paragraph <br>
-
+### 4- Lancer le projet
 
 ```
 dotnet run
 ```
-
-```
-git command
-```
-
-`command`
-
-1. List
-2. List
-  1. List
-  2. List
-3. List
-
-- Item
-- Item 2
-- Item 3
-- Item 4
-  - Item 4-1
-  - Item 4-2
-
-* Item
-* Item 2
-* Item 3
-
-+ Item
-+ Item 2
-+ Item 3
-
-* Item
-
-  > Paragraph 
-
-* Item 2
-
-  > Paragraph
-
-* Item 3
-
-Horizontal rules
-
-******************
-
--------------------
-
 ___________________
-
-
-[I'm a reference-style link][Arbitrary case-insensitive reference text] <br/>
-
-[I'm a relative reference to a repository file](../blob/master/LICENSE) <br/>
- 
-Link : My favorite search engine is [Duck Duck Go](https://duckduckgo.com). <br/>
-
-Link with a title : My favorite search engine is [Duck Duck Go](https://duckduckgo.com "secure search engine"). <br/>
-
-<https://www.markdownguide.org> <br/>
