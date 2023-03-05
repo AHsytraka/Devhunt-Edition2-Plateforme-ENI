@@ -8,7 +8,6 @@ public class User
 {
     [Key]
     [Required]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [MinLength(4)]
     [MaxLength(7)]
     public string? Nmat { get; set; }
@@ -18,8 +17,8 @@ public class User
     [MaxLength(3)]
     public string? Parcour { get; set; }
     public string? Email { get; set; }
+    public bool ConfirmedEmail {get; set;}
     public byte[]? Pdp { get; set; }
-
     [MaxLength(255)]
     [JsonIgnore]
     public string? Mdp { get; set; }

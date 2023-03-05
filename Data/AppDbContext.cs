@@ -22,6 +22,7 @@ public class AppDbContext : DbContext
     public DbSet<Pub> Pubs {get; set;}
     public DbSet<User> Users {get; set;}
     public DbSet<Lesson> Lessons {get; set;}
+    public DbSet<ListTemp> ListTemps {get; set;}
     public DbSet<Document> Documents {get; set;}
     public DbSet<Reaction> Reactions {get; set;}
     public DbSet<Commentaire> Commentaires {get; set;}
@@ -31,6 +32,7 @@ public class AppDbContext : DbContext
         {
             entity.HasIndex(e => e.Email).IsUnique();
         });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasIndex(e => e.Nmat).IsUnique();

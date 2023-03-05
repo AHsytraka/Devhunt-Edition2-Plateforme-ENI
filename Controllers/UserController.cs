@@ -3,6 +3,11 @@ using Devhunt.Data;
 using Devhunt.Models;
 using Devhunt.Dtos;
 using Devhunt.Helpers;
+using BCrypt;
+using System.Configuration;
+using System.Net;
+using System.Net.Mail;
+using SendGrid;
 
 namespace Devhunt.Controllers.UserController;
 
@@ -14,31 +19,41 @@ public class ApiController : Controller
 {
     private readonly AppDbContext _context;
     private readonly JwtServices _jwtService;
-    private readonly IPubRepository _pubRepository;
-    private readonly IDocRepository _docRepository;
     private readonly IUserRepository _userRepository;
-    private readonly IComsRepository _comsRepository;
-    private readonly ILessonRepository _lessonRepository;
-    private readonly IReactionRepository _reactionRepository;
 
     public ApiController (
         AppDbContext context,
         JwtServices jwtService,
-        IPubRepository pubRepository,
-        IDocRepository docRepository,
-        IUserRepository userRepository,
-        IComsRepository comsRepository,
-        ILessonRepository lessonRepository,
-        IReactionRepository reactionRepository
+        IUserRepository userRepository
     ) {
         _context = context;
         _jwtService = jwtService;
-        _pubRepository = pubRepository;
-        _docRepository = docRepository;
         _userRepository = userRepository;
-        _comsRepository = comsRepository;
-        _lessonRepository = lessonRepository;
-        _reactionRepository = reactionRepository;
+    }
+
+    /************REGISTER**************/
+
+    [HttpPost("Register")]
+    public IActionResult Register(RegisterDto dto)
+    {
+        if(_context.Users.Any(u=>u.Email == dto.Email) && _context.Users.Any(u=>u.Nmat == dto.Nmat))
+        {
+            return BadRequest("Utilisateur déjà inscrit");
+        }
+        var user = new User
+        {
+            Nmat = dto.Nmat,
+            Username = dto.Username,
+            Parcour = dto.Parcour,
+            ConfirmedEmail =false,
+            Email = dto.Email,
+            Pdp = dto.Pdp,
+            Mdp = BCrypt.Net.BCrypt.HashPassword(dto.Mdp)
+        };
+
+        var result = _userRepository.CreateUser(user);
+
+        return Ok("Utilisateur crée avec succès");
     }
 
     /*************LOGIN****************/
@@ -51,10 +66,10 @@ public class ApiController : Controller
         {
             return BadRequest(new { message = "Numéro matricule non valide ou inexistant" });
         }
-        // if (!BCrypt.Net.BCrypt.Verify(dto.Mdp, user.Mdp))
-        // {
-        //     return BadRequest(new { message = "Mot de passe non valide" });
-        // }
+        if (!BCrypt.Net.BCrypt.Verify(dto.Mdp, user.Mdp))
+        {
+            return BadRequest(new { message = "Mot de passe non valide" });
+        }
 
         var jwt = _jwtService.Generator(user.Nmat);
 

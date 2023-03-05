@@ -1,4 +1,6 @@
+using System.Security.Claims;
 using Devhunt.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Devhunt.Data;
 
@@ -13,6 +15,14 @@ public class UserRepository : IUserRepository
     public UserRepository(AppDbContext context)
     {
         _context = context;
+    }
+
+    public User CreateUser(User user)
+    {
+        //adding User and saving it through db context
+        _context.Users.Add(user);
+        _context.SaveChanges();
+        return user;
     }
 
     //Implementation on CreateUser in UserRepository

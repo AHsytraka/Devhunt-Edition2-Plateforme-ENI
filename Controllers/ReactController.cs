@@ -15,30 +15,18 @@ public class ApiController : Controller
 {
     private readonly AppDbContext _context;
     private readonly JwtServices _jwtService;
-    private readonly IPubRepository _pubRepository;
-    private readonly IDocRepository _docRepository;
     private readonly IUserRepository _userRepository;
-    private readonly IComsRepository _comsRepository;
-    private readonly ILessonRepository _lessonRepository;
     private readonly IReactionRepository _reactionRepository;
 
     public ApiController (
         AppDbContext context,
         JwtServices jwtService,
-        IPubRepository pubRepository,
-        IDocRepository docRepository,
         IUserRepository userRepository,
-        IComsRepository comsRepository,
-        ILessonRepository lessonRepository,
         IReactionRepository reactionRepository
     ) {
         _context = context;
         _jwtService = jwtService;
-        _pubRepository = pubRepository;
-        _docRepository = docRepository;
         _userRepository = userRepository;
-        _comsRepository = comsRepository;
-        _lessonRepository = lessonRepository;
         _reactionRepository = reactionRepository;
     }
 
@@ -118,5 +106,4 @@ public class ApiController : Controller
             return Unauthorized();
         }
     }
-
 }
