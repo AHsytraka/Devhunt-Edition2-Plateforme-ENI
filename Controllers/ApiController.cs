@@ -68,8 +68,31 @@ public class ApiController: Controller
             HttpOnly = true
         });
 
-        return Ok(new { message = "succeded" });
+        return Ok(new { message = "Utilisateur connecter" });
     }
+
+    /********************UTILISATEUR CONNECTER****************/
+
+    [HttpGet("Logged")]
+    public IActionResult Logged()
+    {
+        try
+        {
+            var jwt = Request.Cookies["jwToken"];
+            var token = _jwtService.Checker(jwt);
+
+            string userId = (token.Issuer);
+
+            var user = _userRepository.GetByNmat(userId);
+
+            return Ok(user);
+        }
+        catch (Exception)
+        {
+            return Unauthorized();
+        }
+    }
+
 
     /*************** LOGOUT API ******************/
 
@@ -77,7 +100,7 @@ public class ApiController: Controller
     public IActionResult Logout()
     {
         Response.Cookies.Delete("jwToken");
-        return Ok(new { message = "Vous êtes déconnecter" });
+        return Ok(new { message = "Utilisateur déconnecter" });
     }
 
     /************** CREER PUB*****************/
@@ -100,7 +123,7 @@ public class ApiController: Controller
 
         _pubRepository.CreatePub(pub);
 
-        return Created("created publication successfully",_pubRepository.CreatePub(pub));
+        return Created("Publication créer",_pubRepository.CreatePub(pub));
     }
 
     /************** PUBLIER PUB *****************/
@@ -126,7 +149,7 @@ public class ApiController: Controller
             }
             else 
             {
-                return Ok(new { message = "Aucun publication n'a été trouver" });
+                return Ok(new { message = "Publication non trouver" });
             }
 
         }
