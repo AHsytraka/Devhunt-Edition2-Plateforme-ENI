@@ -1,12 +1,11 @@
 #  STELLAR
 
-___________________
 
 ## Get.All
 
 Get.All est une solution mis à la disposition des étudiants l'ENI pour faciliter l'entraide entre les étudiants, le partage de connaissance et de ressource
 
-___________________
+
 
 ## Frameworks, librairies et SGDB
  
@@ -28,7 +27,7 @@ ___________________
   
 </div>
 
-___________________
+
 
 ## INSTALLTION
 
@@ -65,4 +64,4 @@ dotnet ef database update
 ```
 dotnet run
 ```
-___________________
+
