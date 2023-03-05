@@ -11,12 +11,15 @@ public class AppDbContext : DbContext
     public AppDbContext(IConfiguration configuration)
     {
         _configuration = configuration;
+        Database.EnsureCreated();
+
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         var connectionString = _configuration.GetConnectionString("Default");
         options.UseMySql(connectionString,  ServerVersion.AutoDetect(connectionString));
+        Database.EnsureCreated();
     }
 
     public DbSet<Pub> Pubs {get; set;}
